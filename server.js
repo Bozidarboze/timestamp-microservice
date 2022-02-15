@@ -18,7 +18,7 @@ app.get("/api/:timestamp", function (req, res) {
 
   if (utc === "Invalid Date") {
     utc = new Date(Number(timestamp)).toUTCString();
-    unix = timestamp;
+    unix = Number(timestamp);
     if (utc === "Invalid Date") {
       res.json({ error: "Invalid Date" });
     }
@@ -32,10 +32,6 @@ app.get("/api/", (req, res) => {
   let utc = new Date(date).toUTCString();
   let unix = Math.floor(new Date(date).getTime());
 
-  if (utc === "Invalid Date") {
-    utc = new Date(Number(timestamp)).toUTCString();
-    unix = Number(timestamp);
-  }
   res.json({ unix, utc });
 });
 
